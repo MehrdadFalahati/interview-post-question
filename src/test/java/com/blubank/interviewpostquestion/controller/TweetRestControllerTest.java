@@ -4,7 +4,6 @@ import com.blubank.interviewpostquestion.controller.api.tweet.TweetLikeRequest;
 import com.blubank.interviewpostquestion.controller.api.tweet.TweetSaveRequest;
 import com.blubank.interviewpostquestion.service.TweetService;
 import com.blubank.interviewpostquestion.service.api.tweet.*;
-import com.blubank.interviewpostquestion.util.TestUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,11 +11,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.Set;
+
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ActiveProfiles("test")
@@ -56,7 +57,7 @@ public class TweetRestControllerTest extends AbstractRestControllerTest {
 		TweetModel loadResult = TweetModel.builder()
 				.author("Reza")
 				.content("Hello #blubank #contest")
-				.hashtags(TestUtil.setOf("#blubank", "#contest"))
+				.hashtags(Set.of("#blubank", "#contest"))
 				.time(12345)
 				.likeCount(0)
 				.tweetId(loadParam.getTweetId())

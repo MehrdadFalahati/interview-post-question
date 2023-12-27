@@ -3,7 +3,6 @@ package com.blubank.interviewpostquestion.controller;
 import com.blubank.interviewpostquestion.service.HashtagService;
 import com.blubank.interviewpostquestion.service.api.hashtag.HashtagModel;
 import com.blubank.interviewpostquestion.service.api.hashtag.HashtagRankModel;
-import com.blubank.interviewpostquestion.util.TestUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
@@ -32,7 +32,7 @@ public class HashtagRestControllerTest extends AbstractRestControllerTest {
 		// mock service
 		HashtagModel result = HashtagModel.builder()
 				.hashtag(hashtag.toLowerCase())
-				.tweetIds(TestUtil.setOf(1L, 2L, 3L))
+				.tweetIds(Set.of(1L, 2L, 3L))
 				.build();
 		Mockito.when(service.findByHashtag(hashtag)).thenReturn(result);
 
@@ -54,7 +54,7 @@ public class HashtagRestControllerTest extends AbstractRestControllerTest {
 		HashtagRankModel contest = createHashtagRank("#contest", 59);
 		HashtagRankModel programmer = createHashtagRank("#programmer", 34);
 		HashtagRankModel developer = createHashtagRank("#developer", 12);
-		List<HashtagRankModel> results = TestUtil.listOf(blubank, contest, programmer, developer);
+		List<HashtagRankModel> results = List.of(blubank, contest, programmer, developer);
 		Mockito.when(service.topTrends(10, 7)).thenReturn(results);
 
 		mvc.perform(get("/hashtags/top-trends")
