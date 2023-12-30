@@ -47,7 +47,7 @@ public class HashtagServiceImplTest {
 	public void test_hashtag_topTrends__service() {
 		saveTweet("Reza", "#developer", "#blubank", "#contest");
 		saveTweet("Ahmad", "#programming", "#blubank", "#contest");
-		saveTweet("Maryam", "#article", "#balubank");
+		saveTweet("Maryam", "#article", "#blubank");
 
 		// We have 5 distinct hashtags, but the limit is 2
 		List<HashtagRankModel> ranks = hashtagService.topTrends(2, 5);
